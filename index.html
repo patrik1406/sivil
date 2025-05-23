@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starter Template</title>
+
+    <!-- Manrope font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS (via CDN for quick start) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Manrope", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <link rel="stylesheet" href="static/base.css" />
+  </head>
+  <body class="font-sans bg-white text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-white">
+      <div
+        class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <img src="images/logo.svg" alt="Sivil logo" width="100" />
+
+        <div x-data="{ open: false }" class="relative">
+          <button
+            @click="open = !open"
+            class="sm:hidden block text-gray-600 focus:outline-none"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                :class="{ 'hidden': open }"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+              <path
+                :class="{ 'hidden': !open }"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+          <div
+            :class="{ 'block': open, 'hidden': !open }"
+            class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg sm:hidden"
+          >
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">About</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Contact</a>
+          </div>
+        </div>
+
+        <div class="hidden sm:flex gap-6 items-center">
+          <a href="#" class="hover:text-gray-600">Home</a>
+          <a href="#" class="hover:text-gray-600">About</a>
+          <a href="#" class="hover:text-gray-600">Contact</a>
+        </div>
+
+        <div class="hidden sm:flex gap-6 items-center">
+          <a href="#" class="px-6 py-2 rounded bg-[#1D4ED8] text-white"
+            >Last ned</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main>
+      <div class="relative bg-hero">
+        <!-- Full-width flex container -->
+        <div
+          class="relative z-10 max-w-5xl mx-auto flex flex-col md:flex-row items-start justify-center pt-16 gap-8 h-full px-4"
+        >
+          <!-- Text Section -->
+          <div class="w-full lg:mr-16 text-center md:text-left space-y-8">
+            <h1 class="text-4xl md:text-5xl font-black space-y-4">
+             For en litt tryggere hverdag.
+            </h1>
+
+            <p class="text-lg md:text-xl">
+              Med Sivil holder du deg oppdatert på hendelser i ditt nærområde.
+              Politimeldinger, trafikk og brukerrapporter – alt samlet for å
+              gjøre hverdagen litt tryggere.
+            </p>
+
+            <div class="flex justify-center md:justify-start gap-4">
+              <a href="#" class="bg-white text-black px-6 py-2 rounded shadow"
+                >App Store</a
+              >
+              <a href="#" class="bg-white text-black px-6 py-2 rounded shadow"
+                >Google Play</a
+              >
+            </div>
+          </div>
+
+          <!-- Image Section -->
+          <div
+            class="relative w-full md:w-1/2 flex justify-center md:justify-end"
+          >
+            <div class="relative w-fit">
+              <img class="h-full" src="images/phone.webp" alt="" />
+              <div
+                class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white from-25% to-transparent pointer-events-none"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
