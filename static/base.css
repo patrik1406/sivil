@@ -29,3 +29,16 @@
   z-index: 1;
   pointer-events: none;
 }
+
+.blur-bg {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
+
+.fade-in-on-scroll {
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+}
+.fade-in-on-scroll.visible {
+  opacity: 1;
+}

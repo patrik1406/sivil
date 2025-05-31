@@ -25,7 +25,13 @@
       };
     </script>
 
-    <!-- Alpine.js -->
+    <!-- Alpine Plugins -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- Alpine Core -->
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
@@ -256,7 +262,31 @@
         </div>
       </div>
 
-      <div class="max-w-5xl mx-auto px-4 mt-16">
+      <div
+        x-data="{
+          show1: false,
+          show2: false,
+          show3: false,
+          activeNotification: 0
+        }"
+        x-intersect.once.half="
+          setTimeout(() => {
+            activeNotification = 1;
+            setTimeout(() => show1 = true, 300);
+          }, 1000);
+
+          setTimeout(() => {
+            activeNotification = 2;
+            setTimeout(() => show2 = true, 300);
+          }, 3500);
+
+          setTimeout(() => {
+            activeNotification = 3;
+            setTimeout(() => show3 = true, 300);
+          }, 6500);
+        "
+        class="max-w-5xl mx-auto px-4 mt-16"
+      >
         <div class="w-full flex items-center justify-center">
           <div class="relative">
             <div class="">
@@ -264,36 +294,188 @@
             </div>
 
             <div
-              class="bg-red-500 rounded-full p-2 absolute bottom-32 right-36"
+              x-show="show1"
+              x-transition:enter="transition-opacity duration-1000"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              class="absolute top-72 right-20"
             >
-              <img class="size-10" src="icons/fire.svg" alt="" />
-            </div>
+              <div
+                x-data="{ ping: false }"
+                x-effect="
+                  if (show1) {
+                    ping = true;
+                
+                  }
+                "
+                class="relative w-14 h-14"
+              >
+                <!-- Expanding & fading ping -->
+                <div
+                  x-show="ping"
+                  x-transition:enter="transform transition ease-out duration-1000"
+                  x-transition:enter-start="opacity-100 scale-50"
+                  x-transition:enter-end="opacity-0 scale-100"
+                  class="absolute size-24 opacity-0 bg-yellow-500 rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 transform"
+                ></div>
 
-            <div
-              class="bg-black rounded-full p-2 absolute top-44 left-14"
-            >
-              <img class="size-10" src="icons/explosion.svg" alt="" />
-            </div>
-
-            <div
-              class="bg-yellow-500 rounded-full p-2 absolute top-72 right-20"
-            >
-              <img class="size-10" src="icons/traffic.svg" alt="" />
-            </div>
-
-            <div
-              class="absolute right-0 left-0 top-4 md:top-14 md:left-auto md:-translate-x-1/2 bg-white shadow-md flex gap-4 p-4 rounded-xl"
-            >
-              <div class="flex">
-                <img class="w-12 h-12" src="images/logo.png" alt="" />
+                <!-- Icon -->
+                <img
+                  class="w-full h-full p-2 rounded-full bg-yellow-500 relative z-10"
+                  src="icons/traffic.svg"
+                  alt=""
+                />
               </div>
+            </div>
 
-              <div class="flex flex-col">
-                <div class="flex justify-between font-bold">
-                  <p>Sivil</p>
-                  <p>Nå</p>
+            <div
+              x-show="show2"
+              x-transition:enter="transition-opacity duration-1000"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              class="absolute top-44 left-14"
+            >
+              <div
+                x-data="{ ping: false }"
+                x-effect="
+                  if (show2) {
+                    ping = true;
+                
+                  }
+                "
+                class="relative w-14 h-14"
+              >
+                <!-- Expanding & fading ping -->
+                <div
+                  x-show="ping"
+                  x-transition:enter="transform transition ease-out duration-1000"
+                  x-transition:enter-start="opacity-100 scale-50"
+                  x-transition:enter-end="opacity-0 scale-100"
+                  class="absolute size-24 opacity-0 bg-black rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 transform"
+                ></div>
+
+                <!-- Icon -->
+                <img
+                  class="w-full h-full p-2 rounded-full bg-black relative z-10"
+                  src="icons/explosion.svg"
+                  alt=""
+                />
+              </div>
+            </div>
+
+            <div
+              x-show="show3"
+              x-transition:enter="transition-opacity duration-1000"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              class="absolute bottom-32 right-36"
+            >
+              <div
+                x-data="{ ping: false }"
+                x-effect="
+                  if (show3) {
+                    ping = true;
+                
+                  }
+                "
+                class="relative w-14 h-14"
+              >
+                <!-- Expanding & fading ping -->
+                <div
+                  x-show="ping"
+                  x-transition:enter="transform transition ease-out duration-1000"
+                  x-transition:enter-start="opacity-100 scale-50"
+                  x-transition:enter-end="opacity-0 scale-100"
+                  class="absolute size-24 opacity-0 bg-red-500 rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 transform"
+                ></div>
+
+                <!-- Icon -->
+                <img
+                  class="w-full h-full p-2 rounded-full bg-red-500 relative z-10"
+                  src="icons/fire.svg"
+                  alt=""
+                />
+              </div>
+            </div>
+
+            <div
+              x-show="activeNotification === 1"
+              x-transition:enter="transition-all duration-1000"
+              x-transition:enter-start="opacity-0 translate-y-8"
+              x-transition:enter-end="opacity-100 translate-y-0"
+              x-transition:leave="transition-all duration-1000"
+              x-transition:leave-start="opacity-100 translate-y-0"
+              x-transition:leave-end="opacity-0 -translate-y-8"
+              class="absolute w-full top-12 flex justify-center px-4"
+            >
+              <div
+                class="bg-white w-full bg-opacity-85 shadow-lg flex items-center gap-4 p-3 rounded-3xl"
+              >
+                <div class="w-14 flex bg-white p-2 items-center rounded-2xl">
+                  <img class="" src="images/logo.png" alt="" />
                 </div>
-                <div><p>Vei stengt etter kollisjon</p></div>
+
+                <div class="flex flex-col w-full">
+                  <div class="flex justify-between">
+                    <p class="font-semibold">Sivil</p>
+                    <p class="text-sm text-gray-500">nå</p>
+                  </div>
+                  <p>Vei stengt etter kollisjon.</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              x-show="activeNotification === 2"
+              x-transition:enter="transition-all duration-1000"
+              x-transition:enter-start="opacity-0 translate-y-8"
+              x-transition:enter-end="opacity-100 translate-y-0"
+              x-transition:leave="transition-all duration-1000"
+              x-transition:leave-start="opacity-100 translate-y-0"
+              x-transition:leave-end="opacity-0 -translate-y-8"
+              class="absolute w-full top-12 flex justify-center px-4"
+            >
+              <div
+                class="bg-white w-full bg-opacity-85 shadow-lg flex items-center gap-4 p-3 rounded-3xl"
+              >
+                <div class="w-14 flex bg-white p-2 items-center rounded-2xl">
+                  <img class="" src="images/logo.png" alt="" />
+                </div>
+
+                <div class="flex flex-col w-full">
+                  <div class="flex justify-between">
+                    <p class="font-semibold">Sivil</p>
+                    <p class="text-sm text-gray-500">nå</p>
+                  </div>
+                  <p>Slåsskamp i området.</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              x-show="activeNotification === 3"
+              x-transition:enter="transition-all duration-1000"
+              x-transition:enter-start="opacity-0 translate-y-8"
+              x-transition:enter-end="opacity-100 translate-y-0"
+              x-transition:leave="transition-all duration-1000"
+              x-transition:leave-start="opacity-100 translate-y-0"
+              x-transition:leave-end="opacity-0 -translate-y-8"
+              class="absolute w-full top-12 flex justify-center px-4"
+            >
+              <div
+                class="bg-white w-full bg-opacity-85 shadow-lg flex items-center gap-4 p-3 rounded-3xl"
+              >
+                <div class="w-14 flex bg-white p-2 items-center rounded-2xl">
+                  <img class="" src="images/logo.png" alt="" />
+                </div>
+
+                <div class="flex flex-col w-full">
+                  <div class="flex justify-between">
+                    <p class="font-semibold">Sivil</p>
+                    <p class="text-sm text-gray-500">nå</p>
+                  </div>
+                  <p>Vei stengt etter kollisjon.</p>
+                </div>
               </div>
             </div>
           </div>
