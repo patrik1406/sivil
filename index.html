@@ -43,7 +43,7 @@
     <div class="relative z-50">
       <nav class="relative z-50 bg-white shadow-sm">
         <div
-          class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
+          class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center"
         >
           <img src="images/logo.svg" alt="Sivil logo" width="100" />
 
@@ -134,13 +134,12 @@
             class="bg-white p-8 rounded-3xl shadow-lg w-full lg:mr-16 text-center md:text-left space-y-8"
           >
             <h1 class="text-4xl md:text-5xl font-black space-y-4">
-              For en litt tryggere hverdag.
+              For en litt tryggere hverdag
             </h1>
 
             <p class="text-lg md:text-xl">
-              Med Sivil holder du deg oppdatert på hendelser i ditt nærområde.
-              Politimeldinger, trafikk og brukerrapporter – alt samlet for å
-              gjøre hverdagen litt tryggere.
+              Sivil holder deg oppdatert på viktige hendelser fra både
+              myndigheter og brukere der du er.
             </p>
 
             <div class="flex justify-center md:justify-start gap-4">
@@ -163,9 +162,9 @@
               class="relative w-fit"
             >
               <img
-                class="h-full fade-in-slide mask-phone-fade"
+                class="h-full max-h-[600px] fade-in-slide mask-phone-fade"
                 :class="shown ? 'visible' : ''"
-                src="images/phone.webp"
+                src="images/hero-phone.png"
                 alt=""
               />
             </div>
@@ -174,18 +173,15 @@
       </div>
 
       <!-- Feature Showcase -->
-      <div class="max-w-5xl mx-auto px-4 mt-8">
-        <h2 class="font-bold text-3xl md:text-4xl text-left">
-          Alt du trenger for å holde deg oppdatert i ditt nærområde.
-        </h2>
+      <div class="max-w-5xl mx-auto px-4">
         <div class="flex flex-col md:flex-row gap-16">
           <div
             class="w-full mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 gap-y-8"
           >
-            <div class="p-4 shadow-lg rounded-xl text-center">
+            <div class="p-6 shadow-lg rounded-2xl">
               <div
                 x-data="{shown: false }"
-                x-intersect.full="shown = true"
+                x-intersect="shown = true"
                 class="fade-in space-y-4 w-full h-full"
                 :class="shown ? 'visible' : ''"
               >
@@ -204,20 +200,18 @@
                   </svg>
                 </div>
 
-                <h2 class="font-bold text-lg">
-                  Se hendelser i nærheten – i sanntid
-                </h2>
+                <h2 class="font-bold text-lg">Oppdateringer der du er</h2>
 
                 <p>
-                  Et oversiktlig kart viser politi­meldinger, trafikkuhell og
-                  andre hendelser rundt deg, akkurat når de skjer.
+                  Kartet oppdateres automatisk med hendelser i nærheten, så du
+                  kan ta smarte valg og føle deg trygg der du er.
                 </p>
               </div>
             </div>
-            <div class="p-4 shadow-lg rounded-xl text-center">
+            <div class="p-6 shadow-lg rounded-2xl">
               <div
                 x-data="{shown: false }"
-                x-intersect.full="shown = true"
+                x-intersect="shown = true"
                 class="fade-in space-y-4 w-full h-full"
                 :class="shown ? 'visible' : ''"
               >
@@ -236,20 +230,18 @@
                   </svg>
                 </div>
 
-                <h2 class="font-bold text-lg">
-                  Data direkte fra pålitelige kilder
-                </h2>
+                <h2 class="font-bold text-lg">Informasjon du kan stole på</h2>
 
                 <p>
-                  Sivil samler informasjon automatisk fra Politiet og Statens
-                  vegvesen, slik at du alltid har det nyeste – uten å lete selv.
+                  Sivil henter informasjon direkte fra Politiet og Statens
+                  vegvesen, så du slipper å lete selv.
                 </p>
               </div>
             </div>
-            <div class="p-4 shadow-lg rounded-xl text-center">
+            <div class="p-6 shadow-lg rounded-2xl">
               <div
                 x-data="{shown: false }"
-                x-intersect.full="shown = true"
+                x-intersect="shown = true"
                 class="fade-in space-y-4 w-full h-full"
                 :class="shown ? 'visible' : ''"
               >
@@ -266,9 +258,7 @@
                   </svg>
                 </div>
 
-                <h2 class="font-bold text-lg">
-                  Brukerrapporter fra folk i nærheten
-                </h2>
+                <h2 class="font-bold text-lg">Trygghet skapt sammen</h2>
 
                 <p>
                   Få varsler og rapporter fra andre brukere i nærheten. Del egne
@@ -442,7 +432,7 @@
                   x-transition:leave="transition-all duration-1000"
                   x-transition:leave-start="opacity-100 translate-y-0"
                   x-transition:leave-end="opacity-0 -translate-y-8"
-                  class="absolute w-full top-12 flex justify-center px-4"
+                  class="absolute w-full top-14 flex justify-center px-5"
                 >
                   <div
                     class="bg-white w-full shadow-lg flex items-center gap-4 p-3 rounded-3xl"
@@ -468,7 +458,7 @@
                   x-transition:leave="transition-all duration-1000"
                   x-transition:leave-start="opacity-100 translate-y-0"
                   x-transition:leave-end="opacity-0 -translate-y-8"
-                  class="absolute w-full top-12 flex justify-center px-4"
+                  class="absolute w-full top-14 flex justify-center px-5"
                 >
                   <div
                     class="bg-white w-full shadow-lg flex items-center gap-4 p-3 rounded-3xl"
@@ -494,7 +484,7 @@
                   x-transition:leave="transition-all duration-1000"
                   x-transition:leave-start="opacity-100 translate-y-0"
                   x-transition:leave-end="opacity-0 -translate-y-8"
-                  class="absolute w-full top-12 flex justify-center px-4"
+                  class="absolute w-full top-14 flex justify-center px-5"
                 >
                   <div
                     class="bg-white w-full shadow-lg flex items-center gap-4 p-3 rounded-3xl"
