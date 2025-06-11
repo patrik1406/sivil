@@ -1,0 +1,20 @@
+1. Hero with animated phone
+2. 3 feature blocks
+3. how it works
+
+	Last ned
+	Installer appen gratis fra App Store eller Google Play.
+
+	Utforsk kartet
+	Se hendelser fra politi, vegvesen og andre brukere i sanntid.
+
+	Få varsler
+	Motta varsler om viktige hendelser i nærheten av deg.
+
+	Del videre
+	Rapporter egne observasjoner og hjelp andre i nærområdet.
+
+4. community section
+5. faq
+6. call to action
+7. footer

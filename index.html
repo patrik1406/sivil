@@ -6,8 +6,10 @@
     <title>Starter Template</title>
 
     <!-- Manrope font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@100bg-white;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
       rel="stylesheet"
     />
 
@@ -137,7 +139,7 @@
           <div
             class="bg-white p-8 rounded-3xl shadow-lg w-full lg:mr-16 text-center md:text-left space-y-8"
           >
-            <h1 class="text-4xl md:text-5xl font-black space-y-4">
+            <h1 class="text-4xl md:text-5xl font-black space-y-3">
               For en litt tryggere hverdag
             </h1>
 
@@ -252,7 +254,7 @@
             <div
               x-data="{shown: false }"
               x-intersect.half="shown = true"
-              class="fade-in space-y-4 w-full h-full"
+              class="fade-in space-y-3 w-full h-full"
               :class="shown ? 'visible' : ''"
             >
               <div class="bg-gray-200 inline-block rounded-xl p-4">
@@ -270,7 +272,7 @@
                 </svg>
               </div>
 
-              <h2 class="font-bold text-lg">Oppdateringer der du er</h2>
+              <h2 class="font-black text-lg">Oppdateringer der du er</h2>
 
               <p>
                 Kartet oppdateres automatisk med hendelser i nærheten, så du kan
@@ -282,7 +284,7 @@
             <div
               x-data="{shown: false }"
               x-intersect.half="shown = true"
-              class="fade-in space-y-4 w-full h-full"
+              class="fade-in space-y-3 w-full h-full"
               :class="shown ? 'visible' : ''"
             >
               <div class="bg-gray-200 inline-block rounded-xl p-4">
@@ -300,7 +302,7 @@
                 </svg>
               </div>
 
-              <h2 class="font-bold text-lg">Informasjon du kan stole på</h2>
+              <h2 class="font-black text-lg">Informasjon du kan stole på</h2>
 
               <p>
                 Sivil henter informasjon direkte fra Politiet og Statens
@@ -312,7 +314,7 @@
             <div
               x-data="{shown: false }"
               x-intersect.half="shown = true"
-              class="fade-in space-y-4 w-full h-full"
+              class="fade-in space-y-3 w-full h-full"
               :class="shown ? 'visible' : ''"
             >
               <div class="bg-gray-200 inline-block rounded-xl p-4">
@@ -328,12 +330,63 @@
                 </svg>
               </div>
 
-              <h2 class="font-bold text-lg">Trygghet skapt sammen</h2>
+              <h2 class="font-black text-lg">Trygghet skapt sammen</h2>
 
               <p>
                 Få varsler og rapporter fra andre brukere i nærheten. Del egne
                 observasjoner og hjelp andre å holde seg informert.
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How It Works -->
+      <div class="max-w-5xl mx-auto px-4 mt-24">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+          <div class="flex flex-col justify-between text-end">
+            <div class="space-y-3">
+              <span
+                class="inline-grid place-items-center font-black text-4xl w-16 aspect-square bg-gray-200 rounded-xl"
+              >
+                1
+              </span>
+              <h3 class="font-black text-lg">Last ned</h3>
+              <p>Installer appen gratis fra App Store eller Google Play.</p>
+            </div>
+            <div class="space-y-3">
+              <span
+                class="inline-grid place-items-center font-black text-4xl w-16 aspect-square bg-gray-200 rounded-xl"
+              >
+                2
+              </span>
+              <h3 class="font-black text-lg">Utforsk kartet</h3>
+              <p>
+                Se hendelser fra politi, vegvesen og andre brukere i sanntid.
+              </p>
+            </div>
+          </div>
+          <div class="mx-auto">
+            <img class="max-h-[400px]" src="images/hero-phone.png" alt="" />
+          </div>
+          <div class="flex flex-col justify-between">
+            <div class="space-y-3">
+              <span
+                class="inline-grid place-items-center font-black text-4xl w-16 aspect-square bg-gray-200 rounded-xl"
+              >
+                3
+              </span>
+              <h3 class="font-black text-lg">Få varsler</h3>
+              <p>Motta varsler om viktige hendelser i nærheten av deg.</p>
+            </div>
+            <div class="space-y-3">
+              <span
+                class="inline-grid place-items-center font-black text-4xl w-16 aspect-square bg-gray-200 rounded-xl"
+              >
+                4
+              </span>
+              <h3 class="font-black text-lg">Del videre</h3>
+              <p>Rapporter egne observasjoner og hjelp andre i nærområdet.</p>
             </div>
           </div>
         </div>
@@ -371,6 +424,7 @@
                 <p>Tilgjengelig på App Store og Google Play – helt gratis.</p>
               </div>
             </div>
+
             <div class="mt-12 flex gap-4">
               <div class="">
                 <svg
