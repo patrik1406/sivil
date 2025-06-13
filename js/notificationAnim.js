@@ -1,8 +1,8 @@
-window.notificationAnim = function () {
+function notificationAnim() {
   return {
     pins: [
       {
-        style: "top: 15rem; right: 2.5rem;",
+        style: "top: 18rem; right: 2rem;",
         icon: "icons/traffic.svg",
         pinBg: "bg-yellow-500",
         pingBg: "bg-yellow-500",
@@ -16,7 +16,7 @@ window.notificationAnim = function () {
         visible: false,
       },
       {
-        style: "bottom: 10rem; right: 8rem;",
+        style: "bottom: 5rem; right: 8rem;",
         icon: "icons/fire.svg",
         pinBg: "bg-red-500",
         pingBg: "bg-red-500",
@@ -50,3 +50,61 @@ window.notificationAnim = function () {
     },
   };
 };
+
+function howItWorks() {
+  return {
+    active: 0,
+    slides: [
+      {
+        number: 1,
+        title: 'Last ned',
+        text: 'Installer appen gratis fra App Store eller Google Play.',
+      },
+      {
+        number: 2,
+        title: 'Utforsk kartet',
+        text: 'Se hendelser fra politi, vegvesen og andre brukere i sanntid.',
+      },
+      {
+        number: 3,
+        title: 'Få varsler',
+        text: 'Motta varsler om viktige hendelser i nærheten av deg.',
+      },
+      {
+        number: 4,
+        title: 'Del videre',
+        text: 'Rapporter egne observasjoner og hjelp andre i nærområdet.',
+      },
+    ],
+    touchStartX: 0,
+
+    next() {
+      if (this.active < this.slides.length - 1) this.active++;
+    },
+    prev() {
+      if (this.active > 0) this.active--;
+    },
+    startTouch(e) {
+      this.touchStartX = e.changedTouches[0].clientX;
+    },
+    endTouch(e) {
+      const diff = e.changedTouches[0].clientX - this.touchStartX;
+      if (diff > 50) this.prev();
+      if (diff < -50) this.next();
+    },
+
+    init() {
+      setTimeout(() => {
+        this.activeNotification = 1;
+      }, 1000);
+
+      setTimeout(() => {
+        this.activeNotification = 2;
+      }, 3000);
+
+      setTimeout(() => {
+        this.activeNotification = 3;
+      }, 5000);
+    },
+  };
+}

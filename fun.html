@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="no" x-data="relationshipTest()">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kjærestelisens 2004™</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      body {
+        background-image: url("https://www.transparenttextures.com/patterns/80-lines.png");
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        color: #0000cc;
+        text-shadow: 1px 1px #ff00ff;
+        background-color: #fffbe7;
+      }
+      .blinking {
+        animation: blink 1s steps(2, start) infinite;
+      }
+      @keyframes blink {
+        to {
+          visibility: hidden;
+        }
+      }
+      .rainbow-text {
+        text-shadow: -4px 4px #ef3550, -8px 8px #f48fb1, -12px 12px #7e57c2,
+          -16px 16px #2196f3, -20px 20px #26c6da, -24px 24px #43a047,
+          -28px 28px #eeff41, -32px 32px #f9a825, -36px 36px #ff5722;
+      }
+      .explode {
+        animation: explode 0.5s ease-out;
+      }
+      @keyframes explode {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(2.5);
+          opacity: 0.2;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .marquee {
+        background: yellow;
+        color: red;
+        font-weight: bold;
+        padding: 0.5rem;
+        border-top: 3px solid red;
+        border-bottom: 3px solid red;
+        font-size: 1.2rem;
+        overflow: hidden;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2.5rem;
+        line-height: 1.5rem;
+        z-index: 9999;
+      }
+      .marquee span {
+        display: inline-block;
+        padding-left: 100%;
+        animation: scroll-left 15s linear infinite;
+        white-space: nowrap;
+      }
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col items-center justify-center p-4 pb-20"
+  >
+    <div
+      class="bg-white border-8 border-pink-500 p-6 max-w-2xl w-full shadow-2xl rounded-3xl animate__animated animate__bounceInDown"
+    >
+      <div
+        class="text-center border-b-4 border-dotted border-red-500 pb-4 mb-6"
+      >
+        <h1 class="text-5xl font-extrabold text-wrap rainbow-text">
+          <strong class="underline">Patriks kjæreste™</strong> sertifikat
+        </h1>
+        <p class="text-lg blinking mt-12">🚨 EKSTREMT VIKTIG! 🚨</p>
+        <img
+          src="https://media.tenor.com/ev8UUqNOIm0AAAAi/snoop-dogg-dance.gif"
+          class="mx-auto my-4 w-32"
+        />
+      </div>
+
+      <div x-show="step === 'intro'" x-transition>
+        <p class="mb-6 text-center">
+          For å fornye ditt
+          <strong class="underline">Patriks kjæreste™</strong> sertifikat i et
+          år til må du gjennomføre denne testen.
+        </p>
+        <div class="text-center">
+          <button
+            @click="step = 'quiz'"
+            class="bg-gradient-to-r from-yellow-400 to-pink-500 text-white px-6 py-3 rounded-full shadow-xl text-xl hover:from-yellow-500 hover:to-pink-600"
+          >
+            START TESTEN!!!
+          </button>
+        </div>
+      </div>
+
+      <div x-show="step === 'quiz'" x-transition>
+        <template x-if="current < questions.length">
+          <div class="text-center">
+            <h2
+              class="text-3xl font-bold mb-4"
+              x-text="questions[current].question"
+            ></h2>
+            <template
+              x-for="(option, index) in questions[current].options"
+              :key="index"
+            >
+              <button
+                class="block w-full text-left px-6 py-3 mb-2 border-4 border-blue-300 rounded-full hover:bg-yellow-100 text-xl shadow-lg transition-all duration-200"
+                :class="answered ? (index === questions[current].correct ? 'bg-green-300 explode' : (index === selected ? 'bg-red-200 explode' : '')) : ''"
+                :disabled="answered"
+                @click="select(index)"
+                x-text="option"
+              ></button>
+            </template>
+            <p
+              class="text-md italic mt-3 text-red-600 font-bold"
+              x-show="answered && selected !== questions[current].correct"
+            >
+              ❌ Oi! Det var feil! Men søtt av deg å prøve.
+            </p>
+            <button
+              x-show="answered"
+              @click="next()"
+              class="mt-4 bg-green-600 text-white px-6 py-2 rounded-full text-xl shadow-lg hover:bg-green-700"
+            >
+              ➡️ MORE
+            </button>
+          </div>
+        </template>
+      </div>
+
+      <div x-show="step === 'result'" x-transition>
+        <h2 class="text-4xl font-bold text-red-600 text-center mb-4">
+          ❌ LISENSEN ER IKKE FORNYET
+        </h2>
+        <p class="text-center text-lg">
+          MEN… fordi jeg elsker deg mer enn du elsker meg:
+        </p>
+        <div class="text-center mt-6">
+          <button
+            @click="step = 'gift'"
+            class="bg-blue-700 text-white px-8 py-3 rounded-full text-2xl shadow-lg hover:bg-blue-800"
+          >
+            🎁 MOTTA TRØSTEGAVEN
+          </button>
+        </div>
+      </div>
+
+      <div x-show="step === 'gift'" x-transition>
+        <h2 class="text-3xl font-bold text-center rainbow mb-4">
+          🎁 GRATULERER!
+        </h2>
+        <img
+          src="https://media.tenor.com/ID18qKNi4gEAAAAi/happy-birthday.gif"
+          alt="sparkle gif"
+          class="mx-auto mt-4 w-32"
+        />
+        <p class="text-center text-lg font-bold">
+          Utstedt i henhold til Infinity-paragrafen.
+        </p>
+        <p class="text-center text-pink-600 font-extrabold text-2xl mt-2">
+          HAN ELSKER DEG MER. GANGER UENDELIG. 💘
+        </p>
+      </div>
+    </div>
+
+    <div class="marquee flex items-center">
+      <span
+        >NB! la han ta på puppene dine så mye han vil da det er godt for
+        sjela</span
+      >
+    </div>
+
+    <script>
+      function relationshipTest() {
+        return {
+          step: "intro",
+          current: 0,
+          selected: null,
+          answered: false,
+          questions: [
+            {
+              question: 'Når Patrik sier "I love you", hva bør du svare?',
+              options: [
+                "I love you most times infinity",
+                "Hva betyr det egentlig å elske?",
+                "Jeg elsker deg, men garantert ikke like mye som du elsker meg",
+              ],
+              correct: 2,
+            },
+            {
+              question: "Hvem elsker hvem mest?",
+              options: ["Det er likt", "Jeg", "Han. Helt åpenbart."],
+              correct: 2,
+            },
+            {
+              question: "Hva er kjærestens kjærlighetsspråk?",
+              options: [
+                "Fysisk nærhet",
+                "Tid sammen",
+                "Å vinne diskusjoner om hvem som elsker mest",
+              ],
+              correct: 2,
+            },
+            {
+              question: "Hva er straffen for å si at du elsker ham mer?",
+              options: [
+                "1 uke uten kos",
+                "Påtvunget beklagelsesmelding",
+                "Umiddelbar diskvalifisering fra gave",
+              ],
+              correct: 2,
+            },
+            {
+              question: "Hva er den endelige og udiskutable sannheten?",
+              options: [
+                "Kjærlighet er en gjensidig reise",
+                "Vi elsker like mye",
+                "Han elsker deg mer. Ganger uendelig.",
+              ],
+              correct: 2,
+            },
+          ],
+          select(index) {
+            if (!this.answered) {
+              this.selected = index;
+              this.answered = true;
+            }
+          },
+          next() {
+            this.answered = false;
+            this.selected = null;
+            if (this.current < this.questions.length - 1) {
+              this.current++;
+            } else {
+              this.step = "result";
+            }
+          },
+        };
+      }
+      function showPopup(message) {
+        const popup = document.getElementById("custom-popup");
+        const text = document.getElementById("popup-message");
+        text.innerText = message;
+        popup.classList.remove("hidden");
+      }
+
+      function hidePopup() {
+        document.getElementById("custom-popup").classList.add("hidden");
+      }
+
+      // Pop one every 8 seconds
+      setInterval(() => {
+        const messages = [
+          "⚠️ KJÆRLIGHETSALARM: Han elsker deg for mye.",
+          "💘 Feil oppdaget: Du undervurderer kjærligheten hans.",
+          "👮‍♀️ Lisenspatruljen er på vei hvis du svarer feil igjen.",
+          "🚨 Viktig melding: Han vinner kjærlighetskonkurransen. Alltid.",
+          "💾 Lagrer søtheten... Vennligst vent.",
+          "❗Systemmelding: Du er for søt for dette skjemaet.",
+        ];
+        const message = messages[Math.floor(Math.random() * messages.length)];
+        showPopup(message);
+      }, 8000);
+    </script>
+    <div
+      id="custom-popup"
+      class="hidden fixed top-1/4 left-1/2 transform -translate-x-1/2 z-[9999] w-96 bg-white border-[6px] border-blue-600 shadow-2xl text-black font-sans text-sm"
+      style="font-family: 'Comic Sans MS', cursive"
+    >
+      <div
+        class="bg-blue-600 text-white p-2 font-bold flex justify-between items-center"
+      >
+        💻 Systemvarsel
+        <button
+          onclick="hidePopup()"
+          class="bg-white text-black px-2 font-extrabold ml-4"
+        >
+          X
+        </button>
+      </div>
+      <div class="p-4 flex items-start space-x-2">
+        <img
+          src="https://media.tenor.com/q_JpZpyZ_OkAAAAi/warning-sign-warning.gif"
+          class="w-8 h-8"
+          alt="advarsel"
+        />
+        <p id="popup-message" class="leading-snug">
+          Dette er en veldig seriøs og ekte systemmelding.
+        </p>
+      </div>
+      <div class="px-4 pb-3 text-right">
+        <button
+          onclick="hidePopup()"
+          class="bg-gray-200 border border-black px-4 py-1 shadow-inner hover:bg-gray-300"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

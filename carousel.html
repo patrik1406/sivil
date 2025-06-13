@@ -1,0 +1,140 @@
+<!-- How It Works Mobile -->
+<div x-data="carousel()" class="md:hidden max-w-5xl mx-auto px-4 mt-24">
+  <h2 class="font-bold text-3xl md:text-4xl text-center">
+    Slik fungerer Sivil
+  </h2>
+  <div class="mt-12 flex justify-center">
+    <div class="relative h-[400px] w-full">
+      <template x-for="(slide, index) in slides" :key="index">
+        <img
+          x-show="active === index"
+          x-transition.opacity
+          x-transition.duration.500ms
+          class="absolute inset-0 w-full h-full object-contain"
+          :src="`images/how-it-works-${index + 1}.png`"
+          alt=""
+        />
+      </template>
+    </div>
+  </div>
+  <div class="mt-12 overflow-hidden">
+    <!-- Slides -->
+    <div
+      class="flex transition-transform duration-1000"
+      :style="`transform: translateX(-${active * 100}%);`"
+      @touchstart="startTouch($event)"
+      @touchend="endTouch($event)"
+    >
+      <div class="w-full flex-shrink-0">
+        <div class="flex items-end gap-4">
+          <span
+            class="inline-grid place-items-center font-black text-4xl w-16 aspect-square bg-gray-200 rounded-xl"
+          >
+            1
+          </span>
+          <h3 class="font-black text-lg">Last ned</h3>
+        </div>
+
+        <p class="mt-4">
+          Installer appen gratis fra App Store eller Google Play.
+        </p>
+      </div>
+      <div class="w-full flex-shrink-0">
+        <div class="flex items-end gap-4">
+          <span
+            class="inline-grid place-items-center font-black text-4xl w-16 aspect-square bg-gray-200 rounded-xl"
+          >
+            2
+          </span>
+          <h3 class="font-black text-lg">Utforsk kartet</h3>
+        </div>
+
+        <p class="mt-4">
+          Se hendelser fra politi, vegvesen og andre brukere i sanntid.
+        </p>
+      </div>
+      <div class="w-full flex-shrink-0">
+        <div class="flex items-end gap-4">
+          <span
+            class="inline-grid place-items-center font-black text-4xl w-16 aspect-square bg-gray-200 rounded-xl"
+          >
+            3
+          </span>
+          <h3 class="font-black text-lg">Få varsler</h3>
+        </div>
+
+        <p class="mt-4">
+          Motta varsler om viktige hendelser i nærheten av deg.
+        </p>
+      </div>
+      <div class="w-full flex-shrink-0">
+        <div class="flex items-end gap-4">
+          <span
+            class="inline-grid place-items-center font-black text-4xl w-16 aspect-square bg-gray-200 rounded-xl"
+          >
+            4
+          </span>
+          <h3 class="font-black text-lg">Del videre</h3>
+        </div>
+
+        <p class="mt-4">
+          Rapporter egne observasjoner og hjelp andre i nærområdet.
+        </p>
+      </div>
+    </div>
+    <!-- Navigation -->
+    <div class="mt-8 flex items-center justify-center gap-8">
+      <svg
+        @click="prev"
+        :class="{
+              'opacity-50 cursor-not-allowed': active <= 0,
+              'opacity-100 cursor-pointer': active > 0
+            }"
+        :disabled="active <= 0"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-8"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5 8.25 12l7.5-7.5"
+        />
+      </svg>
+
+      <!-- Step counter -->
+      <div class="flex gap-2">
+        <template x-for="(slide, index) in slides" :key="index">
+          <div
+            class="size-2 rounded-full transition-all duration-300"
+            :class="index === active ? 'bg-black' : 'bg-gray-200'"
+          ></div>
+        </template>
+      </div>
+
+      <svg
+        @click="next"
+        :class="{
+              'opacity-50 cursor-not-allowed': active >= slides.length - 1,
+              'opacity-100 cursor-pointer': active < slides.length - 1
+            }"
+        :disabled="active >= slides.length - 1"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-8"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
