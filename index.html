@@ -22,6 +22,10 @@
             fontFamily: {
               sans: ["Manrope", "sans-serif"],
             },
+            boxShadow: {
+              neumorphic:
+                "4px 4px 8px rgba(209, 217, 230, 0.7), -4px -4px 8px rgba(255, 255, 255, 0.5)",
+            },
           },
         },
       };
@@ -72,7 +76,7 @@
         >
           <!-- Tagline + Description -->
           <div
-            class="w-full h-full bg-white p-8 rounded-3xl shadow-lg text-center md:text-left space-y-6 md:space-y-8"
+            class="w-full h-full bg-white p-8 rounded-3xl shadow-neumorphic text-center md:text-left space-y-6 md:space-y-8"
           >
             <h1 class="text-4xl md:text-5xl font-black">
               Alltid oppdatert,<br />der du er
@@ -122,7 +126,7 @@
                   class="absolute w-full top-14 flex justify-center px-5"
                 >
                   <div
-                    class="bg-white w-full shadow-lg flex items-center gap-4 p-3 rounded-3xl"
+                    class="bg-white w-full shadow-neumorphic flex items-center gap-4 p-3 rounded-3xl"
                   >
                     <div class="flex flex-col gap-2 w-full">
                       <div class="flex justify-between">
@@ -183,10 +187,10 @@
       </div>
 
       <!-- Feature Showcase -->
-      <div class="max-w-5xl mx-auto px-4 mt-12 text-center">
-        <h2 class="font-bold text-3xl md:text-4xl">Slik fungerer Sivil</h2>
+      <div class="max-w-5xl mx-auto px-4 mt-16 md:mt-24 lg:mt-32 text-center">
+        <h2 class="font-bold text-3xl md:text-4xl">Alt som skjer, der du er</h2>
         <div class="mt-12 w-full grid grid-cols-1 md:grid-cols-3 gap-4 gap-y-8">
-          <div class="p-6 shadow-lg rounded-2xl">
+          <div class="p-6 shadow-neumorphic rounded-2xl">
             <div
               x-data="{shown: false }"
               x-intersect.half="shown = true"
@@ -216,7 +220,7 @@
               </p>
             </div>
           </div>
-          <div class="p-6 shadow-lg rounded-2xl">
+          <div class="p-6 shadow-neumorphic rounded-2xl">
             <div
               x-data="{shown: false }"
               x-intersect.half="shown = true"
@@ -246,7 +250,7 @@
               </p>
             </div>
           </div>
-          <div class="p-6 shadow-lg rounded-2xl">
+          <div class="p-6 shadow-neumorphic rounded-2xl">
             <div
               x-data="{shown: false }"
               x-intersect.half="shown = true"
@@ -274,9 +278,12 @@
       </div>
 
       <!-- How It Works -->
-      <div x-data="howItWorks()" class="max-w-5xl mx-auto px-4 mt-24">
+      <div
+        x-data="howItWorks()"
+        class="max-w-5xl mx-auto px-4 mt-16 md:mt-24 lg:mt-32"
+      >
         <h2 class="font-bold text-3xl md:text-4xl text-center">
-          Slik fungerer Sivil
+          Alltid oppdatert, helt enkelt
         </h2>
         <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
           <div class="hidden md:flex flex-col justify-between text-end">
@@ -284,7 +291,12 @@
               x-for="slide in [slides[0], slides[2]]"
               :key="slide.number"
             >
-              <div class="space-y-3">
+              <div
+                x-data="{shown: false }"
+                x-intersect.half="shown = true"
+                class="fade-in space-y-3"
+                :class="shown ? 'visible' : ''"
+              >
                 <span
                   @mouseenter="active = slide.number - 1"
                   class="inline-grid place-items-center font-black text-4xl w-16 aspect-square rounded-xl transition-colors duration-500 select-none"
@@ -305,16 +317,23 @@
               ></div>
 
               <!-- Slide Images -->
-              <template x-for="(slide, index) in slides" :key="index">
-                <img
-                  x-show="active === index"
-                  x-transition.opacity
-                  x-transition.duration.500ms
-                  class="absolute inset-0 w-full h-full object-contain drop-shadow-lg z-10"
-                  :src="`images/how-it-works-${index + 1}.png`"
-                  alt=""
-                />
-              </template>
+              <div
+                x-data="{shown: false }"
+                x-intersect.half="shown = true"
+                class="fade-in-slide w-full h-full"
+                :class="shown ? 'visible' : ''"
+              >
+                <template x-for="(slide, index) in slides" :key="index">
+                  <img
+                    x-show="active === index"
+                    x-transition.opacity
+                    x-transition.duration.500ms
+                    class="absolute inset-0 w-full h-full object-contain z-10"
+                    :src="`images/how-it-works-${index + 1}.png`"
+                    alt=""
+                  />
+                </template>
+              </div>
             </div>
             <div class="md:hidden mt-4 overflow-hidden">
               <!-- Slides -->
@@ -345,7 +364,12 @@
               x-for="slide in [slides[1], slides[3]]"
               :key="slide.number"
             >
-              <div class="space-y-3">
+              <div
+                x-data="{shown: false }"
+                x-intersect.half="shown = true"
+                class="fade-in space-y-3"
+                :class="shown ? 'visible' : ''"
+              >
                 <span
                   @mouseenter="active = slide.number - 1"
                   class="inline-grid place-items-center font-black text-4xl w-16 aspect-square rounded-xl transition-colors duration-500 select-none"
@@ -414,7 +438,40 @@
         </div>
       </div>
 
-      <footer class="mt-16"></footer>
+      <!-- Call to Action -->
+      <div class="max-w-5xl mx-auto px-4 mt-16 md:mt-24 lg:mt-32">
+        <!-- Tagline + Description -->
+        <div
+          class="w-full h-full bg-black text-white p-8 rounded-3xl shadow-neumorphic text-center space-y-6 md:space-y-8"
+        >
+          <h2 class="text-3xl md:text-4xl font-black">
+            Hold deg oppdatert,<br />last ned appen nå
+          </h2>
+
+          <div class="flex justify-center items-center gap-4">
+            <a href="#"
+              ><img class="max-h-12" src="images/app_store.png" alt=""
+            /></a>
+            <a href="#"
+              ><img class="max-h-12" src="images/google_play.png" alt=""
+            /></a>
+          </div>
+          <p class="md:text-lg">Last ned gratis</p>
+        </div>
+      </div>
+
+      <footer class="bg-gray-100 h-72">
+        <div class="max-w-5xl mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-between">
+            <img src="images/logo.svg" alt="Sivil logo" width="150" />
+
+            <div>
+              <a href="">Hjem</a><a href="">Kontakt oss</a
+              ><a href="">Last ned</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   </body>
 </html>
