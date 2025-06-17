@@ -2,21 +2,21 @@ function notificationAnim() {
   return {
     pins: [
       {
-        style: "top: 18rem; right: 2rem;",
+        style: "top: 60%; right: 15%;",
         icon: "icons/traffic.svg",
         pinBg: "bg-yellow-500",
         pingBg: "bg-yellow-500",
         visible: false,
       },
       {
-        style: "top: 11rem; left: 3.5rem;",
+        style: "top: 37%; left: 12%;",
         icon: "icons/explosion.svg",
         pinBg: "bg-black",
         pingBg: "bg-black",
         visible: false,
       },
       {
-        style: "bottom: 5rem; right: 8rem;",
+        style: "bottom: 14%; left: 22%;",
         icon: "icons/fire.svg",
         pinBg: "bg-red-500",
         pingBg: "bg-red-500",
@@ -49,7 +49,7 @@ function notificationAnim() {
       }, 5000);
     },
   };
-};
+}
 
 function howItWorks() {
   return {
@@ -57,23 +57,23 @@ function howItWorks() {
     slides: [
       {
         number: 1,
-        title: 'Last ned',
-        text: 'Installer appen gratis fra App Store eller Google Play.',
+        title: "Last ned",
+        text: "Installer appen gratis fra App Store eller Google Play.",
       },
       {
         number: 2,
-        title: 'Utforsk kartet',
-        text: 'Se hendelser fra politi, vegvesen og andre brukere i sanntid.',
+        title: "Utforsk kartet",
+        text: "Se hendelser fra politi, vegvesen og andre brukere i sanntid.",
       },
       {
         number: 3,
-        title: 'Få varsler',
-        text: 'Motta varsler om viktige hendelser i nærheten av deg.',
+        title: "Få varsler",
+        text: "Motta varsler om viktige hendelser i nærheten av deg.",
       },
       {
         number: 4,
-        title: 'Del videre',
-        text: 'Rapporter egne observasjoner og hjelp andre i nærområdet.',
+        title: "Del videre",
+        text: "Rapporter egne observasjoner og hjelp andre i nærområdet.",
       },
     ],
     touchStartX: 0,
