@@ -439,16 +439,22 @@
       </div>
 
       <!-- Call to Action -->
-      <div class="max-w-5xl mx-auto px-4 mt-16 md:mt-24 lg:mt-32">
-        <!-- Tagline + Description -->
+      <div
+        class="relative z-10 max-w-5xl mx-auto px-4 transform translate-y-1/2"
+      >
         <div
-          class="w-full h-full bg-black text-white p-8 rounded-3xl shadow-neumorphic text-center space-y-6 md:space-y-8"
+          class="cta relative w-full h-full bg-black text-white p-8 rounded-3xl shadow-neumorphic space-y-6 md:space-y-8"
         >
+          <img
+            class="hidden md:block absolute size-48 right-32 top-1/2 transform -translate-y-1/2"
+            src="images/location.png"
+            alt=""
+          />
           <h2 class="text-3xl md:text-4xl font-semibold">
             Hold deg oppdatert,<br />last ned Sivil nå
           </h2>
 
-          <div class="flex justify-center items-center gap-4">
+          <div class="flex m-. justify-left items-center gap-4">
             <a href="#"
               ><img class="max-h-12" src="images/app_store.png" alt=""
             /></a>
@@ -456,18 +462,20 @@
               ><img class="max-h-12" src="images/google_play.png" alt=""
             /></a>
           </div>
-          <p class="md:text-lg">Helt gratis</p>
+          <p class="md:text-lg"></p>
         </div>
       </div>
 
-      <footer class="bg-gray-100 h-72">
+      <footer class="bg-gray-100 h-72 relative z-0">
         <div class="max-w-5xl mx-auto px-4">
-          <div class="flex flex-col md:flex-row justify-between">
+          <div class="pt-52 flex flex-col md:flex-row justify-between items-center">
             <img src="images/logo.svg" alt="Sivil logo" width="150" />
 
             <div>
-              <a href="">Hjem</a><a href="">Kontakt oss</a
-              ><a href="">Last ned</a><a href="">Personvernerklæring</a>
+              <a href="">Hjem</a>
+              <a href="">Kontakt oss</a>
+              <a href="">Last ned</a>
+              <a href="">Personvernerklæring</a>
             </div>
             <div>hvaennepostener@sivil.no</div>
           </div>
