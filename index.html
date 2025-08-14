@@ -24,7 +24,7 @@
             },
             boxShadow: {
               neumorphic:
-                "4px 4px 8px rgba(209, 217, 230, 0.7), -4px -4px 8px rgba(255, 255, 255, 0.5)",
+                "6px 6px 12px rgba(163, 177, 198, 0.65), -6px -6px 12px rgba(255, 255, 255, 0.9)",
             },
           },
         },
@@ -49,7 +49,7 @@
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
   </head>
-  <body class="font-sans bg-white">
+  <body class="font-sans bg-white text-gray-900">
     <nav class="top-0 sticky z-50 bg-white shadow-sm">
       <div
         class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center"
@@ -384,26 +384,30 @@
         </div>
         <!-- Navigation -->
         <div class="mt-6 flex items-center justify-center gap-8">
-          <svg
-            @click="prev"
-            :class="{
+          <div
+            class="flex justify-center rounded-full shadow-neumorphic bg-gray-50 text-gray-800"
+          >
+            <svg
+              @click="prev"
+              :class="{
                 'opacity-25 cursor-not-allowed': active <= 0,
                 'opacity-100 cursor-pointer': active > 0
               }"
-            :disabled="active <= 0"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-8 m-2 rounded-full outline outline-2 outline-offset-2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            />
-          </svg>
+              :disabled="active <= 0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-8 m-2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5 8.25 12l7.5-7.5"
+              />
+            </svg>
+          </div>
 
           <!-- Slide tracker -->
           <div class="flex gap-2">
@@ -415,26 +419,69 @@
             </template>
           </div>
 
-          <svg
+          <button
             @click="next"
             :class="{
                 'opacity-25 cursor-not-allowed': active >= slides.length - 1,
                 'opacity-100 cursor-pointer': active < slides.length - 1
               }"
             :disabled="active >= slides.length - 1"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-8 m-2 rounded-full outline outline-2 outline-offset-2"
+            class="flex justify-center rounded-full shadow-neumorphic bg-gray-100 text-gray-900"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-8 m-2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="max-w-5xl mx-auto px-4 mt-16 md:mt-24 lg:mt-32 text-center">
+        <h2 class="font-bold text-3xl md:text-4xl text-center">
+          Ofte stilte spørsmål
+        </h2>
+        <div
+          x-data="{ open: false }"
+          class="mt-12 p-4 rounded-2xl shadow-neumorphic"
+        >
+          <!-- Question -->
+          <button
+            @click="open = !open"
+            class="flex justify-between items-center w-full text-left font-semibold"
+          >
+            <span class="font-bold text-lg">Hvor kommer dataene fra?</span>
+            <svg
+              :class="{ 'rotate-180': open }"
+              class="w-5 h-5 transition-transform duration-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+
+          <!-- Answer -->
+          <div x-show="open" x-transition class="mt-2 text-left text-gray-800">
+            Vi henter direkte fra Politiet og Vegvesenet. Brukerrapporter er
+            tydelig merket.
+          </div>
         </div>
       </div>
 
@@ -451,7 +498,7 @@
             alt=""
           />
           <h2 class="text-3xl md:text-4xl font-semibold">
-            Hold deg oppdatert,<br />last ned Sivil nå
+            Informasjon til hverdagen,<br />last ned Sivil nå
           </h2>
 
           <div class="flex m-. justify-left items-center gap-4">
@@ -462,13 +509,15 @@
               ><img class="max-h-12" src="images/google_play.png" alt=""
             /></a>
           </div>
-          <p class="md:text-lg"></p>
+          <p class="md:text-lg">Helt gratis</p>
         </div>
       </div>
 
       <footer class="bg-gray-100 h-72 relative z-0">
         <div class="max-w-5xl mx-auto px-4">
-          <div class="pt-52 flex flex-col md:flex-row justify-between items-center">
+          <div
+            class="pt-52 flex flex-col md:flex-row justify-between items-center"
+          >
             <img src="images/logo.svg" alt="Sivil logo" width="150" />
 
             <div>

@@ -108,3 +108,14 @@ function howItWorks() {
     },
   };
 }
+
+function Faq() {
+  return {
+    questions: [
+      {
+        question: "",
+        answer: "",
+      }
+    ]
+  }
+}
